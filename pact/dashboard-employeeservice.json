@@ -1,0 +1,163 @@
+{
+  "consumer": {
+    "name": "Dashboard"
+  },
+  "provider": {
+    "name": "EmployeeService"
+  },
+  "interactions": [
+    {
+      "description": "A request to add a new employee",
+      "providerState": "Adding a new employee",
+      "request": {
+        "method": "post",
+        "path": "/employees",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Siddharth Tiwari",
+          "age": 21,
+          "department": "Software Engineering"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "employeeId": 1,
+          "name": "Siddharth Tiwari",
+          "age": 21,
+          "department": "Software Engineering"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.employeeId": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "A request for all employees",
+      "providerState": "Employees exist",
+      "request": {
+        "method": "get",
+        "path": "/employees"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          {
+            "employeeId": 1,
+            "name": "Siddharth Tiwari",
+            "age": 21,
+            "department": "Software Engineering"
+          },
+          {
+            "employeeId": 1,
+            "name": "Alice Doe",
+            "age": 25,
+            "department": "Software Engineering"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body[0].employeeId": {
+            "match": "type"
+          },
+          "$.body[1].employeeId": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "A request for employee with ID 1",
+      "providerState": "Employee with ID 1 exists",
+      "request": {
+        "method": "get",
+        "path": "/employees/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "employeeId": 1,
+          "name": "Siddharth Tiwari",
+          "age": 21,
+          "department": "Software Engineering"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.employeeId": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "A request to update employee with ID 1",
+      "providerState": "Employee with ID 1 can be updated",
+      "request": {
+        "method": "put",
+        "path": "/employees/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Siddharth Tiwari",
+          "age": 29,
+          "department": "Human Resources"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "employeeId": 1,
+          "name": "Siddharth Tiwari",
+          "age": 29,
+          "department": "Human Resources"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.employeeId": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "A request to delete employee with ID 1",
+      "providerState": "Employee with ID 1 exists and can be deleted",
+      "request": {
+        "method": "delete",
+        "path": "/employees/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
