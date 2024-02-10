@@ -2,4 +2,4 @@ env/
 log/
 __pycache__/
 .pytest_cache/
-pact-mock-service.log
+pact-mock-service.log.DS_Store
